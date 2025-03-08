@@ -99,9 +99,7 @@ def activity(bot: Bot):
     BTC_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="BTC")
 
     tokens_out = [USDT_token, ETH_token, BTC_token]
-    # random_tokens_out = random.sample(tokens_out, 3)
     tokens_in = [USDT_token, ETH_token, BTC_token]
-    # random_tokens_in = random.sample(tokens_in, 3)
     swaps = 0
     random_count = random.randint(5, 10)
     while swaps < random_count:
