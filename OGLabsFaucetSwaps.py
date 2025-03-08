@@ -59,7 +59,7 @@ def activity(bot: Bot):
     '''FAUCETS'''
     bot.ads.page.get_by_text("local_drink").click()
     random_sleep(20, 30)
-    for _ in range(60):
+    for _ in range(100):
         if bot.ads.page.get_by_role('button', name='Request A0GI', exact=True).is_enabled():
             random_sleep(5, 10)
             bot.ads.page.get_by_role('button', name='Request A0GI', exact=True).click()
@@ -88,23 +88,22 @@ def activity(bot: Bot):
     bot.ads.page.get_by_role('button', name='Request ETH', exact=True).click()
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet ETH')
-    random_sleep(10, 20)
-
-    bot.ads.page.get_by_text("swap_horizontal_circle").click()
-    random_sleep(3, 5)
 
     logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
 
     '''SWAPS'''
+    bot.ads.page.get_by_text("swap_horizontal_circle").click()
+    random_sleep(5, 10)
     USDT_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="USDT")
     ETH_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="ETH")
     BTC_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="BTC")
 
     tokens_out = [USDT_token, ETH_token, BTC_token]
+    # random_tokens_out = random.sample(tokens_out, 3)
     tokens_in = [USDT_token, ETH_token, BTC_token]
+    # random_tokens_in = random.sample(tokens_in, 3)
     swaps = 0
     random_count = random.randint(5, 10)
-
     while swaps < random_count:
         for token_out in tokens_out:
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
@@ -112,29 +111,29 @@ def activity(bot: Bot):
             random_sleep(3, 5)
 
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Insufficient").count():
-                logger.warning('Баланс выбранного токена нулевой! Выбираем другой...')
                 continue
 
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
             for token_in in tokens_in:
                 if token_in == token_out:
-                    # bot.ads.page.locator('div.swap-token-selector-container-pc').locator('div.content-wrapper').click()
                     continue
                 else:
                     token_in.click()
                     break
 
-            bot.ads.page.locator("span.badge.font-bold").filter(has_text="MAX").click()
             random_sleep(3, 5)
+            bot.ads.page.locator("span.badge.font-bold").filter(has_text="MAX").click()
+
 
             if not bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 continue
 
+            random_sleep(10, 20)
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").click()
                 bot.metamask.universal_confirm(windows=3, buttons=3)
                 excel_report.increase_counter(f'Swaps')
-                random_sleep(7, 15)
+                random_sleep(20, 30)
                 swaps += 1
 
             if swaps >= random_count:
