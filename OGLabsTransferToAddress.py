@@ -41,7 +41,7 @@ def worker(account: Account) -> None:
 def activity(bot: Bot):
 
     get_user_agent()
-    bot.onchain.change_chain(Chains.SOMNIA_TESTNET)
+    bot.onchain.change_chain(Chains.OGLABS_TESTNET)
     excel_report = Excel(bot.account, file='OGLabsActivity.xlsx')
     excel_report.set_cell('Address', f'{bot.account.address}')
     excel_report.set_date('Date')
