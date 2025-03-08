@@ -56,7 +56,6 @@ def activity(bot: Bot):
         bot.metamask.universal_confirm()
         random_sleep(2, 3)
 
-
     '''FAUCETS'''
     bot.ads.page.get_by_text("local_drink").click()
     random_sleep(20, 30)
@@ -96,18 +95,16 @@ def activity(bot: Bot):
 
     logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
 
-
     '''SWAPS'''
     USDT_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="USDT")
     ETH_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="ETH")
     BTC_token = bot.ads.page.locator("div.bc-title-wrapper").filter(has_text="BTC")
 
     tokens_out = [USDT_token, ETH_token, BTC_token]
-    # random_tokens_out = random.sample(tokens_out, 3)
     tokens_in = [USDT_token, ETH_token, BTC_token]
-    # random_tokens_in = random.sample(tokens_in, 3)
     swaps = 0
     random_count = random.randint(5, 10)
+
     while swaps < random_count:
         for token_out in tokens_out:
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
