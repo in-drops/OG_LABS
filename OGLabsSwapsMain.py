@@ -70,10 +70,10 @@ def activity(bot: Bot):
     random_count = random.randint(5, 10)
     while swaps < random_count:
         for token_out in tokens_out:
-            random_sleep(3, 5)
+            random_sleep(5, 10)
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
             token_out.click()
-            random_sleep(3, 5)
+            random_sleep(5, 10)
 
             if bot.ads.page.locator("span.badge.text-gray.font-bold").filter(has_text="MAX").count():
                 continue
@@ -94,14 +94,14 @@ def activity(bot: Bot):
                 else:
                     break
 
-            random_sleep(3, 5)
+            random_sleep(5, 10)
             bot.ads.page.locator("span.badge.font-bold").filter(has_text="MAX").click()
 
             random_sleep(5, 10)
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").click()
                 bot.metamask.universal_confirm(windows=3, buttons=3)
-                random_sleep(5, 10)
+                random_sleep(10, 20)
                 while True:
                     if bot.ads.page.locator("p.text-center.font-bold").filter(
                             has_text="Swap").count() or bot.ads.page.locator("p.text-center.font-bold").filter(
