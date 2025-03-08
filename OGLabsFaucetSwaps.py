@@ -104,38 +104,49 @@ def activity(bot: Bot):
     random_count = random.randint(5, 10)
     while swaps < random_count:
         for token_out in tokens_out:
+            random_sleep(3, 5)
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
             token_out.click()
             random_sleep(3, 5)
+
+            if bot.ads.page.locator("span.badge.text-gray.font-bold").filter(has_text="MAX").count():
+                continue
 
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Insufficient").count():
                 continue
 
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
+
             for token_in in tokens_in:
                 if token_in == token_out:
                     continue
+                token_in.click()
+
+                if not bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
+                    bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
+                    continue
                 else:
-                    token_in.click()
                     break
 
             random_sleep(3, 5)
             bot.ads.page.locator("span.badge.font-bold").filter(has_text="MAX").click()
 
-
-            if not bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
-                continue
-
-            random_sleep(10, 20)
+            random_sleep(5, 10)
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").click()
                 bot.metamask.universal_confirm(windows=3, buttons=3)
+                random_sleep(5, 10)
+                while True:
+                    if bot.ads.page.locator("p.text-center.font-bold").filter(
+                            has_text="Swap").count() or bot.ads.page.locator("p.text-center.font-bold").filter(
+                            has_text="Insufficient").count():
+                        break
+
                 excel_report.increase_counter(f'Swaps')
-                random_sleep(20, 30)
                 swaps += 1
 
             if swaps >= random_count:
-                logger.success('Swap активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
+                logger.success(f'Выполнено {random_count} свапов! Данные записаны в таблицу OGLabsActivity.xlsx')
                 break
 
 if __name__ == '__main__':
