@@ -45,9 +45,6 @@ def activity(bot: Bot):
     excel_report.set_cell('Address', f'{bot.account.address}')
     excel_report.set_date('Date')
 
-    referer = random.choice(get_list_from_file("popular_sites.txt"))
-    bot.ads.open_url(referer)
-    random_sleep(5, 10)
 
     bot.ads.open_url('https://faucet.0g.ai/')
     random_sleep(5, 10)
@@ -60,7 +57,7 @@ def activity(bot: Bot):
     for _ in range(100):
         if bot.ads.page.get_by_role('button', name='Request AOGI Token').is_enabled():
             bot.ads.page.get_by_role('button', name='Request AOGI Token').click()
-            random_sleep(20, 30)
+            random_sleep(5, 10)
             logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
             excel_report.increase_counter(f'Faucet II A0GI')
             break
