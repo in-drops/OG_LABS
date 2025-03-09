@@ -7,7 +7,7 @@ from core.excel import Excel
 from models.account import Account
 from utils.inputs import input_pause, input_cycle_pause, input_cycle_amount
 from utils.logging import init_logger
-from utils.utils import (random_sleep, get_accounts, select_profiles)
+from utils.utils import (random_sleep, get_accounts, select_profiles, get_list_from_file)
 
 
 def main():
@@ -46,6 +46,9 @@ def activity(bot: Bot):
     excel_report.set_date('Date')
     bot.metamask.auth_metamask()
     bot.metamask.select_chain(Chains.OGLABS_TESTNET)
+    referer = random.choice(get_list_from_file("popular_sites.txt"))
+    bot.ads.open_url(referer)
+    random_sleep(5, 10)
     bot.ads.open_url('https://hub.0g.ai/portfolio/token')
     random_sleep(5, 10)
     connect_button = bot.ads.page.get_by_role('button', name='Connect')
