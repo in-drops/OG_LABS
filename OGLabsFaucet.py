@@ -55,9 +55,6 @@ def activity(bot: Bot):
     bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
     bot.ads.page.get_by_placeholder('Enter your wallet address').click()
     random_sleep(5, 10)
-    bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
-    bot.ads.page.get_by_placeholder('Enter your wallet address').click()
-    random_sleep(5, 10)
     bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
     random_sleep(5, 10)
 
