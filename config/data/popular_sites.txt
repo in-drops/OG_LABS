@@ -16,7 +16,6 @@ https://www.microsoft.com
 https://www.twitch.tv
 https://www.discord.com
 https://www.paypal.com
-https://www.github.com
 https://www.medium.com
 https://www.nytimes.com
 https://www.bbc.com
@@ -26,7 +25,6 @@ https://www.espn.com
 https://www.bloomberg.com
 https://www.yahoo.com
 https://www.weather.com
-https://www.indeed.com
 https://www.zoom.us
 https://www.stackoverflow.com
 https://www.quora.com
@@ -55,8 +53,6 @@ https://www.binance.com
 https://www.opensea.io
 https://www.coindesk.com
 https://www.tradingview.com
-https://www.xvideos.com
-https://www.pornhub.com
 https://www.onlyfans.com
 https://www.bbc.co.uk
 https://www.dailymail.co.uk
@@ -79,13 +75,6 @@ https://www.stackexchange.com
 https://www.producthunt.com
 https://www.indiegogo.com
 https://www.kickstarter.com
-https://www.naver.com
-https://www.baidu.com
-https://www.qq.com
-https://www.tmall.com
-https://www.jd.com
-https://www.weibo.com
-https://www.sohu.com
 https://www.zoom.com
 https://www.foxnews.com
 https://www.cbsnews.com
@@ -96,4 +85,3 @@ https://www.forbes.com
 https://www.businessinsider.com
 https://www.usatoday.com
 https://www.marketwatch.com
-https://www.wsj.com
