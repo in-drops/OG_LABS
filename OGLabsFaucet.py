@@ -69,12 +69,6 @@ def activity(bot: Bot):
         logger.error('Faucet в данный момент не работает!')
 
 
-
-
-
-
-
-
 if __name__ == '__main__':
     try:
         main()
