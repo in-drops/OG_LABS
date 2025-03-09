@@ -55,13 +55,13 @@ def activity(bot: Bot):
     bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
     bot.ads.page.get_by_placeholder('Enter your wallet address').click()
     random_sleep(5, 10)
+    bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
+    bot.ads.page.get_by_placeholder('Enter your wallet address').click()
+    random_sleep(5, 10)
+    bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
+    random_sleep(5, 10)
 
     if bot.ads.page.get_by_role('button', name='Request AOGI Token').is_enabled():
-        bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
-        bot.ads.page.get_by_placeholder('Enter your wallet address').click()
-        random_sleep(5, 10)
-        bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
-        random_sleep(5, 10)
         bot.ads.page.get_by_role('button', name='Request AOGI Token').click()
         random_sleep(20, 30)
         logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
