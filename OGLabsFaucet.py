@@ -65,10 +65,15 @@ def activity(bot: Bot):
             excel_report.increase_counter(f'Faucet II A0GI')
             break
         random_sleep(5, 10)
-
-
     else:
         logger.error('Faucet в данный момент не работает!')
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     try:
