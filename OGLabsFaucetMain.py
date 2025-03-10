@@ -89,7 +89,7 @@ def activity(bot: Bot):
     bot.ads.page.get_by_role('button', name='Request ETH', exact=True).click()
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet ETH')
-    random_sleep(10, 20)
+    random_sleep(3, 5)
 
     logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
 
