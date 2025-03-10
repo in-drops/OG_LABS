@@ -68,6 +68,8 @@ def activity(bot: Bot):
     tokens_in = [USDT_token, ETH_token, BTC_token]
     swaps = 0
     random_count = random.randint(5, 10)
+    no_tokens_out_count = True
+
     while swaps < random_count:
         for token_out in tokens_out:
             random_sleep(5, 10)
@@ -81,27 +83,28 @@ def activity(bot: Bot):
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Insufficient").count():
                 continue
 
-            bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
+            no_tokens_out_count = False
 
-            for token_in in tokens_in:
-                if token_in == token_out:
-                    continue
-                token_in.click()
+            if not bot.ads.page.locator("p.text-center.font-bold").get_by_text("Swap", exact=True).is_visible():
+                bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
+                for token_in in tokens_in:
+                    if token_in == token_out:
+                        continue
+                    token_in.click()
+                    if not bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
+                        bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
+                        continue
+                    else:
+                        break
 
-                if not bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
-                    bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
-                    continue
-                else:
-                    break
-
-            random_sleep(5, 10)
+            random_sleep(3, 5)
             bot.ads.page.locator("span.badge.font-bold").filter(has_text="MAX").click()
 
             random_sleep(5, 10)
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").click()
                 bot.metamask.universal_confirm(windows=3, buttons=3)
-                random_sleep(10, 20)
+                random_sleep(5, 10)
                 while True:
                     if bot.ads.page.locator("p.text-center.font-bold").filter(
                             has_text="Swap").count() or bot.ads.page.locator("p.text-center.font-bold").filter(
@@ -114,6 +117,10 @@ def activity(bot: Bot):
             if swaps >= random_count:
                 logger.success(f'Выполнено {random_count} свапов! Данные записаны в таблицу OGLabsActivity.xlsx')
                 break
+
+    if no_tokens_out_count:
+        logger.error('Нет токенов с балансом для свапов!')
+
 
 if __name__ == '__main__':
     try:
