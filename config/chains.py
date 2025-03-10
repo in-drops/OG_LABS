@@ -150,7 +150,8 @@ class Chains:
         rpc='https://16600.rpc.thirdweb.com/',
         chain_id=16600,
         native_token='AOGI',
-        metamask_name='0G-Newton-Testnet'
+        metamask_name='0G-Newton-Testnet',
+        multiplier=1.2
     )
 
 

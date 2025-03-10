@@ -68,28 +68,28 @@ def activity(bot: Bot):
             break
         random_sleep(5, 10)
 
-    random_sleep(20, 30)
+    random_sleep(5, 10)
 
     bot.ads.page.locator('div.x-input-container').click()
     bot.ads.page.locator('span.text.font-bold', has_text='USDT').click()
     bot.ads.page.get_by_role('button', name='Request USDT', exact=True).click()
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet USDT')
-    random_sleep(10, 20)
+    random_sleep(5, 10)
 
     bot.ads.page.locator('div.x-input-container').click()
     bot.ads.page.locator('span.text.font-bold', has_text='BTC').click()
     bot.ads.page.get_by_role('button', name='Request BTC', exact=True).click()
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet BTC')
-    random_sleep(10, 20)
+    random_sleep(5, 10)
 
     bot.ads.page.locator('div.x-input-container').click()
     bot.ads.page.locator('span.text.font-bold', has_text='ETH').click()
     bot.ads.page.get_by_role('button', name='Request ETH', exact=True).click()
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet ETH')
-    random_sleep(3, 5)
+    random_sleep(5, 10)
 
     logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
 
