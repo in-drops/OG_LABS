@@ -1,5 +1,7 @@
 
 import random
+import time
+
 from loguru import logger
 from config import config, Chains
 from core.bot import Bot
@@ -45,25 +47,29 @@ def activity(bot: Bot):
     excel_report.set_cell('Address', f'{bot.account.address}')
     excel_report.set_date('Date')
 
-
     bot.ads.open_url('https://faucet.0g.ai/')
     random_sleep(5, 10)
 
-    bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
-    bot.ads.page.get_by_placeholder('Enter your wallet address').click()
-    random_sleep(5, 10)
-    bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
-    random_sleep(5, 10)
     for _ in range(100):
         if bot.ads.page.get_by_role('button', name='Request AOGI Token').is_enabled():
+            bot.ads.page.get_by_placeholder('Enter your wallet address').hover()
+            bot.ads.page.get_by_placeholder('Enter your wallet address').click()
+            random_sleep(3, 5)
+            bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
+            random_sleep(3, 5)
             bot.ads.page.get_by_role('button', name='Request AOGI Token').click()
-            random_sleep(5, 10)
-            logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
-            excel_report.increase_counter(f'Faucet II A0GI')
+            random_sleep(20,30)
+            if bot.ads.page.get_by_text('Transaction Successful').is_visible():
+                logger.success('Токены $A0GI успешно получены! Данные записаны в таблицу OGLabsActivity.xlsx')
+                excel_report.increase_counter(f'Faucet II A0GI')
+            else:
+                logger.error('Ошибка получения токенов, либо задержка транзакции!')
+
             break
-        random_sleep(5, 10)
+        random_sleep(3, 5)
+
     else:
-        logger.error('Faucet в данный момент не работает!')
+        logger.error('Ошибка получения токенов!')
 
 
 if __name__ == '__main__':

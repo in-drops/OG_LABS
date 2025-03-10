@@ -60,7 +60,7 @@ def activity(bot: Bot):
     '''FAUCETS'''
     bot.ads.page.get_by_text("local_drink").click()
     random_sleep(20, 30)
-    for _ in range(60):
+    for _ in range(100):
         if bot.ads.page.get_by_role('button', name='Request A0GI', exact=True).is_enabled():
             random_sleep(5, 10)
             bot.ads.page.get_by_role('button', name='Request A0GI', exact=True).click()
@@ -90,9 +90,6 @@ def activity(bot: Bot):
     bot.metamask.universal_confirm()
     excel_report.increase_counter(f'Faucet ETH')
     random_sleep(10, 20)
-
-    bot.ads.page.get_by_text("swap_horizontal_circle").click()
-    random_sleep(3, 5)
 
     logger.success('Faucet активность завершена! Данные записаны в таблицу OGLabsActivity.xlsx')
 
