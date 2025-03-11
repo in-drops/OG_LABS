@@ -68,9 +68,9 @@ def activity(bot: Bot):
     tokens_in = [USDT_token, ETH_token, BTC_token]
     swaps = 0
     random_count = random.randint(5, 10)
+    no_balance_tokens = 0
 
     while swaps < random_count:
-        no_balance_tokens = 0
         for token_out in tokens_out:
             if no_balance_tokens == len(tokens_out):
                 logger.error("Нет токенов с балансом для свапов!")
