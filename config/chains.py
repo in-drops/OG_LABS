@@ -147,10 +147,12 @@ class Chains:
 
     OGLABS_TESTNET = Chain(
         name='oglabs_testnet',
-        rpc='https://16600.rpc.thirdweb.com/',
+        rpc='https://evmrpc-testnet.0g.ai',
+        # rpc='https://16600.rpc.thirdweb.com/',
+        # rpc='https://og-testnet-evm.itrocket.net',
         chain_id=16600,
         native_token='AOGI',
-        metamask_name='0G-Newton-Testnet',
+        metamask_name='0G Newton Testnet',
         multiplier=1.5
     )
 
