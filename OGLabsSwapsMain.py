@@ -68,22 +68,28 @@ def activity(bot: Bot):
     tokens_in = [USDT_token, ETH_token, BTC_token]
     swaps = 0
     random_count = random.randint(5, 10)
-    no_tokens_out_count = True
 
     while swaps < random_count:
+        no_balance_tokens = 0
         for token_out in tokens_out:
+            if no_balance_tokens == len(tokens_out):
+                logger.error("Нет токенов с балансом для свапов!")
+                return
             random_sleep(5, 10)
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
             token_out.click()
+            if bot.ads.page.locator('input.input-container.text-red').count():
+                bot.ads.page.locator('input.input-container.text-red').click()
+                bot.ads.page.locator('input.input-container.text-red').clear()
             random_sleep(5, 10)
 
             if bot.ads.page.locator("span.badge.text-gray.font-bold").filter(has_text="MAX").count():
+                no_balance_tokens += 1
                 continue
 
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Insufficient").count():
+                no_balance_tokens += 1
                 continue
-
-            no_tokens_out_count = False
 
             if not bot.ads.page.locator("p.text-center.font-bold").get_by_text("Swap", exact=True).is_visible():
                 bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(1).click()
@@ -117,9 +123,6 @@ def activity(bot: Bot):
             if swaps >= random_count:
                 logger.success(f'Выполнено {random_count} свапов! Данные записаны в таблицу OGLabsActivity.xlsx')
                 break
-
-    if no_tokens_out_count:
-        logger.error('Нет токенов с балансом для свапов!')
 
 
 if __name__ == '__main__':
