@@ -110,6 +110,7 @@ def activity(bot: Bot):
             random_sleep(5, 10)
             if bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").count():
                 bot.ads.page.locator("p.text-center.font-bold").filter(has_text="Swap").click()
+                random_sleep(3, 5)
                 bot.metamask.universal_confirm(windows=3, buttons=3)
                 random_sleep(5, 10)
                 while True:
