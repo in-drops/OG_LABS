@@ -74,7 +74,7 @@ def activity(bot: Bot):
         for token_out in tokens_out:
             if no_balance_tokens == 9:
                 logger.error("Нет токенов с балансом для свапов!")
-                logger.success(f'Выполнено свапов: {random_count}! Данные записаны в таблицу OGLabsActivity.xlsx')
+                logger.success(f'Выполнено свапов: {swaps}! Данные записаны в таблицу OGLabsActivity.xlsx')
                 return
             random_sleep(5, 10)
             bot.ads.page.locator("span.material-icons-round", has_text="expand_more").nth(0).click()
@@ -122,7 +122,7 @@ def activity(bot: Bot):
                 swaps += 1
 
             if swaps >= random_count:
-                logger.success(f'Выполнено свапов: {random_count}! Данные записаны в таблицу OGLabsActivity.xlsx')
+                logger.success(f'Выполнено свапов: {swaps}! Данные записаны в таблицу OGLabsActivity.xlsx')
                 break
 
 if __name__ == '__main__':
