@@ -125,7 +125,6 @@ def activity(bot: Bot):
                 logger.success(f'Выполнено свапов: {random_count}! Данные записаны в таблицу OGLabsActivity.xlsx')
                 break
 
-
 if __name__ == '__main__':
     try:
         main()
