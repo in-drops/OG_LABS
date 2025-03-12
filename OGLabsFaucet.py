@@ -58,20 +58,19 @@ def activity(bot: Bot):
             bot.ads.page.get_by_placeholder('Enter your wallet address').fill(bot.account.address)
             random_sleep(3, 5)
             bot.ads.page.get_by_role('button', name='Request AOGI Token').click()
-            random_sleep(20,30)
-            for _ in range(10):
-                if bot.ads.page.get_by_text('Transaction Successful').is_visible():
-                    logger.success('Токены $A0GI успешно получены! Данные записаны в таблицу OGLabsActivity.xlsx')
-                    excel_report.increase_counter(f'Faucet II A0GI')
-                    break
-                random_sleep(5, 10)
-            else:
-                logger.error('Ошибка получения токенов, либо задержка транзакции!')
             break
         random_sleep(3, 5)
-
     else:
         logger.error('Ошибка получения токенов!')
+
+    for _ in range(10):
+        if bot.ads.page.get_by_text('Transaction Successful').is_visible():
+            logger.success('Токены $A0GI успешно получены! Данные записаны в таблицу OGLabsActivity.xlsx')
+            excel_report.increase_counter(f'Faucet II A0GI')
+            break
+        random_sleep(5, 10)
+    else:
+        logger.error('Ошибка получения токенов, либо задержка транзакции!')
 
 
 if __name__ == '__main__':
