@@ -153,7 +153,7 @@ class Chains:
         chain_id=16600,
         native_token='AOGI',
         metamask_name='0G Newton Testnet',
-        multiplier=1.5
+        multiplier=1.2
     )
 
 
