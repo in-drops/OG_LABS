@@ -46,7 +46,7 @@ def activity(bot: Bot):
         excel_report.set_cell(f'Txs Count', f'{nonce}')
         logger.info(f'Данные занесены в таблицу OGLabsActivity.xls!')
     except Exception as e:
-        logger.error(f'Ошибка в сети {Chains.SOMNIA_TESTNET.name.upper()}: {e}')
+        logger.error(f'Ошибка в сети {Chains.OGLABS_TESTNET.name.upper()}: {e}')
 
 if __name__ == '__main__':
     try:
