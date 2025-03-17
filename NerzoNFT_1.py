@@ -52,8 +52,6 @@ def activity(bot: Bot):
     excel_report.increase_counter(f'Nerzo NFT #1')
 
 
-
-
 if __name__ == '__main__':
     try:
         main()
