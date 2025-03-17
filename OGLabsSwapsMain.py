@@ -113,11 +113,21 @@ def activity(bot: Bot):
                 random_sleep(3, 5)
                 bot.metamask.universal_confirm(windows=3, buttons=3)
                 random_sleep(5, 10)
-                while True:
+                # while True:
+                #     if bot.ads.page.locator("p.text-center.font-bold").filter(
+                #             has_text="Swap").count() or bot.ads.page.locator("p.text-center.font-bold").filter(
+                #             has_text="Insufficient").count():
+                #         break
+
+                for _ in range(30):
                     if bot.ads.page.locator("p.text-center.font-bold").filter(
                             has_text="Swap").count() or bot.ads.page.locator("p.text-center.font-bold").filter(
                             has_text="Insufficient").count():
                         break
+                    random_sleep(5, 10)
+                else:
+                    logger.error('Ошибка транзакции Swap!')
+                    return
 
                 excel_report.increase_counter(f'Swaps')
                 swaps += 1
