@@ -152,7 +152,7 @@ class Chains:
         # rpc='https://og-testnet-evm.itrocket.net',
         rpc='https://lightnode-json-rpc-0g.grandvalleys.com',
         chain_id=16600,
-        native_token='AOGI',
+        native_token='A0GI',
         metamask_name='0G_Newton Testnet',
         multiplier=1.2
     )
