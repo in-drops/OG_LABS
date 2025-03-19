@@ -47,7 +47,7 @@ def activity(bot: Bot):
     bot.metamask.auth_metamask()
     bot.metamask.select_chain(Chains.OGLABS_TESTNET)
     bot.ads.open_url('https://test.zer0.exchange/swap')
-    random_sleep(30, 60)
+    random_sleep(10, 20)
     connect_button = bot.ads.page.get_by_role('button', name='Connect')
     if connect_button.count():
         bot.ads.page.get_by_role('button', name='Connect').nth(0).click()
